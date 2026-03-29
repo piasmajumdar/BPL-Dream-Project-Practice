@@ -1,5 +1,5 @@
 import './App.css'
-import Banner from './Components/Banner/Banner'
+import Banner from './Components/Homepage/Banner/Banner'
 import Navbar from './Components/Navbar/Navbar'
 
 function App() {
