@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import AvailablePlayers from './AvailablePlayers/AvailablePlayers';
 import SelectedPlayers from './SelectedPlayers/SelectedPlayers';
 
-const Players = () => {
+const Players = ({playersPromise}) => {
 
     const [btnSelectedType, setBtnSelectedType] = useState("available")
 
+    const players = use(playersPromise);
+    // console.log(players)
+
     return (
         <div className='container mx-auto mt-4'>
-            <div className='flex justify-between items-center gap-4'>
+            <div className='flex justify-between items-center gap-4 mb-4'>
                 {btnSelectedType === "available" ?
                     <h2 className='font-bold text-2xl'>Available Players</h2>
                     : <h2 className='font-bold text-2xl'>Selected Player (4/6)</h2>
@@ -21,7 +24,7 @@ const Players = () => {
 
 
             {btnSelectedType === "available" ?
-                <AvailablePlayers></AvailablePlayers>
+                <AvailablePlayers players={players}></AvailablePlayers>
                 : <SelectedPlayers></SelectedPlayers>
             }
 

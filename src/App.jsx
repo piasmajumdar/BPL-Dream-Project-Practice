@@ -3,14 +3,20 @@ import Banner from './Components/Homepage/Banner/Banner'
 import Players from './Components/Homepage/Players/Players'
 import Navbar from './Components/Navbar/Navbar'
 
-function App() {
+const getPlayersPromise = async() =>{
+  const res = await fetch("data.json");
+  return res.json();
+}
+const playersPromise = getPlayersPromise();
 
+function App() {
+  
   return (
     <>
     <Navbar/>
     <Banner/>
     
-    <Players></Players>
+    <Players playersPromise={playersPromise}></Players>
     </>
   )
 }
