@@ -4,7 +4,9 @@ import SelectedPlayers from './SelectedPlayers/SelectedPlayers';
 
 const Players = ({playersPromise}) => {
 
-    const [btnSelectedType, setBtnSelectedType] = useState("available")
+    const [btnSelectedType, setBtnSelectedType] = useState("available");
+
+    const [selectedPlayers, setSelectedPlayers] = useState([]);
 
     const players = use(playersPromise);
     // console.log(players)
@@ -14,7 +16,7 @@ const Players = ({playersPromise}) => {
             <div className='flex justify-between items-center gap-4 mb-4'>
                 {btnSelectedType === "available" ?
                     <h2 className='font-bold text-2xl'>Available Players</h2>
-                    : <h2 className='font-bold text-2xl'>Selected Player (4/6)</h2>
+                    : <h2 className='font-bold text-2xl'>Selected Player ({selectedPlayers.length}/6)</h2>
                 }
                 <div>
                     <button onClick={() => setBtnSelectedType("available")} className={`btn ${btnSelectedType === "available" ? 'bg-[#E7FE29]' : ""} rounded-xl rounded-r-none`}>Available</button>
@@ -24,8 +26,8 @@ const Players = ({playersPromise}) => {
 
 
             {btnSelectedType === "available" ?
-                <AvailablePlayers players={players}></AvailablePlayers>
-                : <SelectedPlayers></SelectedPlayers>
+                <AvailablePlayers players={players} selectedPlayers={selectedPlayers} setSelectedPlayers={setSelectedPlayers}></AvailablePlayers>
+                : <SelectedPlayers selectedPlayers={selectedPlayers} setSelectedPlayers={setSelectedPlayers}></SelectedPlayers>
             }
 
         </div>
